@@ -1,35 +1,77 @@
-# Custom Modular C Preprocessor
+# PREPROCESSOR – Mini C Preprocessor
 
-A lightweight, modular custom C preprocessor built in C that parses source files, handles header file inclusions, strips comments, and processes macros, generating an intermediate preprocessed file (`.i`).
+## About the Project
 
----
+This project is a simple implementation of a C Preprocessor using C programming. It demonstrates how some of the basic preprocessing operations are performed before the actual compilation of a C program.
 
-##  Features
+The project focuses on handling header file inclusion, removing comments and exploring macro processing.
 
-* **File Inclusion Handler**: Automatically detects `#include` directives (both system `<...>` and local `"..."` headers) and expands them into the target file.
-* **Comment Removal**: Scans the intermediate file and safely strips out both single-line (`//`) and multi-line (`/* ... */`) comments in-place using file streams.
-* **Macro Handler**: Implements a linked-list-based symbol table structure for parsing and managing `#define` directives *(Note: Currently under active development / incomplete)*.
-* **Automated Pipeline**: Orchestrates the entire preprocessing sequence from a single command-line execution and outputs a clean `.i` preprocessed file.
+## Features
 
----
+- **File Inclusion:** Reads header files specified using `#include` and incorporates their contents into the output file.
+- **Comment Removal:** Removes single-line (`//`) and multi-line (`/* */`) comments from the source file.
+- **Macro Handling:** Includes an initial implementation of macro processing using structures and linked lists.
+- **Output Generation:** Generates an intermediate `.i` file containing the processed source code.
 
-## 📁 Project Structure
+## Technologies Used
 
-* `preprocessor_main.c`: Main driver program that handles arguments, reads source lines dynamically, and orchestrates the inclusion, comment removal, and macro handling pipeline.
-* `file_inclusion.c`: Scans source code for include directives, opens respective header files (from `/usr/include/` or local paths), and writes them to the intermediate `.i` file.
-* `comment_removal_file.c`: Handles in-place file stream modification using `fseek` and `fputc` to clear comments without breaking line alignments.
-* `macro_handler.c`: Linked-list framework designed to parse `#define` directives and substitute macro expansions *(Work in Progress)*.
-* `makefile_2`: Build configuration script for compiling individual object modules and generating the final `mypreprocessor` executable[cite: 14, 15, 16, 17, 18].
+- C Programming
+- File Handling
+- String Manipulation
+- Dynamic Memory Allocation
+- Structures and Linked Lists
+- GCC Compiler
 
----
+## Project Structure
 
-## 🛠️ Building & Running
+```text
+PREPROCESSOR/
+│
+├── preprocessor_main.c
+├── file_inclusion.c
+├── comment_removal_file.c
+├── macro_handler.c
+├── header.h
+└── README.md
+```
 
-### Prerequisites
-Make sure you have a standard C compiler (`cc`/`gcc`) and `make` utility installed on your Unix/Linux environment.
+## Compilation
 
-### Compilation
-Build the project executable using the provided Makefile:
+Compile the source files using GCC:
 
 ```bash
-make filename.c
+gcc preprocessor_main.c file_inclusion.c \
+comment_removal_file.c macro_handler.c -o mypreprocessor
+```
+
+## How to Run
+
+Execute the program by passing a C source file as a command-line argument.
+
+```bash
+./mypreprocessor input.c
+```
+
+After successful execution, the program generates an intermediate `.i` file.
+
+## Learning Outcomes
+
+Through this project, I explored:
+
+- How a C preprocessor works.
+- Handling files using C standard library functions.
+- Reading and writing files.
+- String processing and manipulation.
+- Working with structures and linked lists.
+- Passing command-line arguments in C.
+
+## Author
+
+**Muhammed Ali B**
+
+Electronics and Communication Engineering  
+Embedded Systems | C Programming | Linux
+
+---
+
+*This project was developed as part of my learning journey in C programming and embedded systems.*
